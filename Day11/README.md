@@ -1,13 +1,44 @@
-# Day 11
+# Day 11: Reactor (Part One)
 
-**Question Link:** [Advent of Code 2025 Day 11](https://adventofcode.com/2025/day/11)
+Approach & Thought Process
 
-##  Explanation
-A directed acyclic graph (DAG) traversal problem tracking data flow. Used Depth-First Search (DFS) with a cache (memoization) to count total paths between the start and end nodes without timing out.
+We need to trace data flow through a directed graph of devices based on an adjacency list.
 
-##  Answers
-- **Part 1:** 
-- **Part 2:** 
+Graph Parsing & Traversal:
+- I parsed the input using string replacement and split operations to build a Map connecting a parent node to a List of child nodes. 
+- I used a recursive helper method to traverse these paths to find how many ways data can flow from the start to the output.
 
-##  My Solution
-_See the source code files in this directory for my implementation._
+Complexity Analysis
+
+Time Complexity: O(V + E)
+Standard graph traversal where V is the number of vertices and E is the number of edges.
+Space Complexity: O(V + E)
+Memory is required for the HashMap representing the graph.
+
+Solution
+
+[View Java Solution](D11q1.java)
+
+---
+
+# Day 11: Reactor (Part Two)
+
+Approach & Thought Process
+
+The number of steps increases, causing the number of paths to explode exponentially. A brute-force traversal results in a Time Limit Exceeded error.
+
+Memoization & Frequency Counting:
+- Instead of tracing individual paths, I used a frequency map approach. 
+- I maintained maps (fftcounts1, daccounts1) using Long values to track how many times a node is reached at a specific depth. 
+- By using getOrDefault, identical sub-paths are collapsed into single mathematical additions, converting exponential recursive growth into linear dynamic programming.
+
+Complexity Analysis
+
+Time Complexity: O(S * V)
+Where S is the number of steps and V is the number of vertices. We process the active states once per step.
+Space Complexity: O(V)
+Storing the frequency count of each node at the current step.
+
+Solution
+
+[View Java Solution](D11q2.java)
