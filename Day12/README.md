@@ -1,13 +1,20 @@
-# Day 12
+# Day 12: Christmas Tree Farm (Part One)
 
-**Question Link:** [Advent of Code 2025 Day 12](https://adventofcode.com/2025/day/12)
+Approach & Thought Process
 
-##  Explanation
-A puzzle about packing polyomino present shapes into grid regions. Optimized by using a ceiling heuristic: comparing the total required area of the shapes against the available region area.
+We need to parse geometric region dimensions and quantities to determine if present shapes fit under the trees.
 
-##  Answers
-- **Part 1:** 
-- **Part 2:** 
+Parsing and Capacity Checks:
+- I processed the input file to separate the dimension strings (width x height) from the sequence arrays. 
+- The logic involves splitting the lines to extract the grid boundaries and the required shapes for further area capacity checks.
 
-##  My Solution
-_See the source code files in this directory for my implementation._
+Complexity Analysis
+
+Time Complexity: O(N)
+Where N is the number of lines in the input. Each line is split and parsed strictly once.
+Space Complexity: O(L)
+Memory allocated for holding the string arrays split from the input lines.
+
+Solution
+
+[View Java Solution](D12q1.java)
