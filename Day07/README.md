@@ -1,13 +1,45 @@
-# Day 7
+# Day 7: Tachyon Manifold (Part One)
 
-**Question Link:** [Advent of Code 2025 Day 7](https://adventofcode.com/2025/day/7)
+Approach & Thought Process
 
-##  Explanation
-Simulating tachyon beam splitters (`^`). Handled exponential beam splits by using Breadth-First Search (BFS) / memoization to track the *count* of beams at specific coordinates rather than tracking individual paths.
+The problem involves simulating a tachyon beam falling through a manifold grid. When the beam hits a splitter, it duplicates and travels left and right.
 
-##  Answers
-- **Part 1:** 
-- **Part 2:** 
+Simulation & Deduplication:
+- To prevent exponential path growth on overlapping beams, I simulated the descent row by row. 
+- I used a HashSet to track the active beam column indices at the current level. 
+- If a beam hits a splitter, its column is removed and replaced by two new columns. The HashSet inherently merges beams that fall onto the same coordinate, preventing redundant calculations.
 
-##  My Solution
-_See the source code files in this directory for my implementation._
+Complexity Analysis
+
+Time Complexity: O(R * C)
+Where R is the number of rows and C is the width of the grid. Using the HashSet ensures we process each column at most once per row.
+Space Complexity: O(C)
+The HashSet stores at most C integers (the column positions) at any given depth.
+
+Solution
+
+[View Java Solution](D7q1.java)
+
+---
+
+# Day 7: Tachyon Manifold (Part Two)
+
+Approach & Thought Process
+
+Part Two requires counting the exact number of distinct timelines (paths) that safely reach the bottom. 
+
+Recursive Path Tracking:
+- I expanded the logic to use a recursive helper function to branch the simulation.
+- I included a detailed debug trace with print statements like "Beam falling starting at Row", "HIT SPLITTER at Row", and "REACHED BOTTOM safely. Count +1" to track the flow and tally the successful terminal points.
+
+Complexity Analysis
+
+Time Complexity: O(V + E)
+Treated as a Directed Acyclic Graph (DAG) traversal where nodes are splitters.
+Space Complexity: O(R)
+The call stack depth is bound by the number of rows in the grid.
+
+Solution
+
+- [View Java Solution](D7q2.java)
+- [View Debug Helper](D7q2_Debug.java)
