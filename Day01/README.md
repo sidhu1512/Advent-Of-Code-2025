@@ -1,13 +1,54 @@
-# Day 1
+# Day 1: Secret Entrance (Part One)
 
-**Question Link:** [Advent of Code 2025 Day 1](https://adventofcode.com/2025/day/1)
+Approach & Thought Process
 
-##  Explanation
-Simulating a safe dial with 100 positions based on rotation instructions (e.g., L68, R30). Part 1 counts stops on 0, and Part 2 counts zero-crossings using modulo and integer division.
+The dial functions as a circular array (buffer) of size 100.
+Input Parsing: 
+- Read the input stream line by line.
+- Separate the direction ('L' or 'R') from the magnitude (the number).
 
-##  Answers
-- **Part 1:** 
-- **Part 2:** 
+Normalization:
+Since the dial is circular (0-99), a rotation of 150 is effectively the same as 50.
+I used the modulo operator (rotation % 100) to simplify the magnitude before calculating the new position.
 
-##  My Solution
-_See the source code files in this directory for my implementation._
+State Management:
+I maintain a dial variable tracking the current position.
+- Right (R): Add the rotation. If it exceeds 99, subtract 100 (wrap around).
+- Left (L): Subtract the rotation. If it drops below 0, add 100 (wrap around).
+
+Condition Checking:
+After applying the logic, check if dial == 0. If yes, increment the count.
+
+Complexity Analysis
+
+Time Complexity: O(N)
+We process the input file line-by-line once. N is the number of instructions.
+Space Complexity: O(1)
+We stream the input using BufferedReader and only store a few integer variables for the state.
+
+Solution
+
+[View Java Solution](D1q1.java)
+
+---
+
+# Day 1: Secret Entrance (Part Two)
+
+Approach & Thought Process
+
+Instead of just checking the final resting position, we need to count how many times the dial crosses or lands on the 0 mark during a continuous spin.
+
+Mathematical Calculation:
+- For each instruction, the number of full revolutions is determined using integer division (magnitude / 100).
+- An additional crossing is counted if the final position wraps past zero relative to the starting position for that specific move. This avoids simulating every single step.
+
+Complexity Analysis
+
+Time Complexity: O(N)
+Direct mathematical calculation for each line keeps it linear.
+Space Complexity: O(1)
+No additional memory required beyond standard state variables.
+
+Solution
+
+[View Java Solution](D1q2.java)
