@@ -42,4 +42,3 @@ The call stack depth is bound by the number of rows in the grid.
 Solution
 
 - [View Java Solution](D7q2.java)
-- [View Debug Helper](D7q2_Debug.java)
